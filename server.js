@@ -24,8 +24,7 @@ app.use((req, res, next) => {
   const allowedOrigins = [
     'http://localhost:3000',
     'http://localhost:5500',
-    // Add your Netlify domain here when deployed
-    // 'https://your-site.netlify.app'
+    'https://webreadydev.netlify.app'
   ];
 
   const origin = req.headers.origin;
