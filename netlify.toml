@@ -1,12 +1,12 @@
 [[redirects]]
   from = "/process"
-  to = "YOUR_RENDER_API_URL/process"
+  to = "https://webready.onrender.com/process"
   status = 200
   force = true
 
 [[redirects]]
   from = "/process-batch"
-  to = "YOUR_RENDER_API_URL/process-batch"
+  to = "https://webready.onrender.com/process-batch"
   status = 200
   force = true
 
