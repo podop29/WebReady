@@ -1,0 +1,19 @@
+{
+  "name": "web-ready",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "express": "^4.19.2",
+    "express-fileupload": "^1.5.1",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "multer": "^2.0.2",
+    "sharp": "^0.33.3"
+  }
+}

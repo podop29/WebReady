@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebReady - Convert Images to WebP & AVIF Online | Responsive Image Generator</title>
+  <meta name="description" content="Replace multiple image optimization tools with one. Convert to WebP/AVIF, resize for all devices, and generate HTML code in a single click. Batch process images and eliminate manual work.">
+  <meta name="keywords" content="convert images to webp online, webp converter, avif converter, responsive image generator, image optimizer, batch image converter, webp converter for developers, compress images for web, srcset generator, picture tag generator, all-in-one image optimizer, bulk image converter, automate image optimization, replace multiple image tools">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/webp" href="/logo.webp">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WebReady - Convert Images to WebP & AVIF Online">
+  <meta property="og:description" content="Replace multiple image optimization tools with one. Convert, resize, and generate responsive images in a single click. No more manual work.">
+  <meta property="og:image" content="/logo.webp">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "WebReady",
+    "description": "All-in-one image optimization tool that replaces multiple tools. Convert to WebP/AVIF, resize for all devices, and generate HTML code in a single click.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "image": "/logo.webp",
+    "logo": "/logo.webp",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Convert images to WebP format",
+      "Convert images to AVIF format",
+      "Generate responsive images",
+      "Batch image processing",
+      "Multiple breakpoint sizes",
+      "Generate HTML code snippets"
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #f5f7fa;
+      min-height: 100vh;
+      padding: 2rem;
+      color: #2d3748;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .logo-img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      margin: 0;
+      font-weight: 600;
+      color: #1a202c;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #718096;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .logo-img {
+        width: 40px;
+        height: 40px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      .subtitle {
+        font-size: 0.9rem;
+      }
+      .header-logo {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+
+    .card {
+      background: white;
+      border-radius: 0.5rem;
+      padding: 2rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    .upload-area {
+      border: 2px dashed #cbd5e0;
+      border-radius: 0.5rem;
+      padding: 3rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: #f7fafc;
+    }
+
+    .upload-area:hover {
+      border-color: #4299e1;
+      background: #ebf8ff;
+    }
+
+    .upload-area.dragover {
+      border-color: #3182ce;
+      background: #bee3f8;
+    }
+
+    .upload-text {
+      font-size: 1.1rem;
+      color: #2d3748;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .upload-hint {
+      color: #718096;
+      font-size: 0.9rem;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .settings-section {
+      margin-bottom: 2rem;
+    }
+
+    .settings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1a202c;
+    }
+
+    .preset-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .preset-btn {
+      padding: 0.5rem 1rem;
+      background: #edf2f7;
+      color: #4a5568;
+      border: 1px solid #cbd5e0;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .preset-btn:hover {
+      background: #e2e8f0;
+      border-color: #a0aec0;
+    }
+
+    .preset-btn.active {
+      background: #3182ce;
+      color: white;
+      border-color: #3182ce;
+    }
+
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .setting-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #4a5568;
+      font-size: 0.875rem;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      padding: 0.625rem;
+      border: 1px solid #cbd5e0;
+      border-radius: 0.375rem;
+      font-size: 0.9rem;
+      transition: border-color 0.2s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #4299e1;
+    }
+
+    .checkbox-group {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-weight: normal;
+      font-size: 0.9rem;
+    }
+
+    input[type="checkbox"] {
+      width: 1.125rem;
+      height: 1.125rem;
+      cursor: pointer;
+    }
+
+    .image-queue {
+      display: none;
+      margin-top: 1.5rem;
+    }
+
+    .image-queue.active {
+      display: block;
+    }
+
+    .queue-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .queue-stats {
+      font-size: 0.875rem;
+      color: #718096;
+    }
+
+    .clear-queue-btn {
+      padding: 0.375rem 0.75rem;
+      background: transparent;
+      color: #e53e3e;
+      border: 1px solid #e53e3e;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .clear-queue-btn:hover {
+      background: #e53e3e;
+      color: white;
+    }
+
+    .image-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .image-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem;
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.375rem;
+      transition: all 0.2s ease;
+    }
+
+    .image-item.processing {
+      background: #ebf8ff;
+      border-color: #bee3f8;
+    }
+
+    .image-item.completed {
+      background: #f0fff4;
+      border-color: #9ae6b4;
+    }
+
+    .image-item.error {
+      background: #fff5f5;
+      border-color: #feb2b2;
+    }
+
+    .image-thumb {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 0.25rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    .image-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .image-name {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #2d3748;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .image-details {
+      font-size: 0.8rem;
+      color: #718096;
+      margin-top: 0.125rem;
+    }
+
+    .image-sizes {
+      font-size: 0.75rem;
+      color: #4299e1;
+      margin-top: 0.25rem;
+      font-weight: 500;
+    }
+
+    .warning-text {
+      color: #d69e2e;
+    }
+
+    .image-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      min-width: 100px;
+      justify-content: flex-end;
+    }
+
+    .status-pending { color: #718096; }
+    .status-processing { color: #3182ce; }
+    .status-completed { color: #38a169; }
+    .status-error { color: #e53e3e; }
+
+    .spinner-small {
+      border: 2px solid #e2e8f0;
+      border-top: 2px solid #3182ce;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.875rem 1.5rem;
+      border: none;
+      border-radius: 0.375rem;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #3182ce;
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: #2c5282;
+    }
+
+    .btn-secondary {
+      background: #edf2f7;
+      color: #4a5568;
+      border: 1px solid #cbd5e0;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: #e2e8f0;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .processing-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .processing-overlay.active {
+      display: flex;
+    }
+
+    .processing-modal {
+      background: white;
+      border-radius: 0.5rem;
+      padding: 2rem;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .spinner-large {
+      border: 4px solid #e2e8f0;
+      border-top: 4px solid #3182ce;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    .hint {
+      font-size: 0.8rem;
+      color: #718096;
+      margin-top: 0.25rem;
+    }
+
+    .remove-btn {
+      padding: 0.375rem;
+      background: transparent;
+      color: #a0aec0;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .remove-btn:hover {
+      color: #e53e3e;
+    }
+
+    /* Content Section */
+    .content-section {
+      margin-top: 3rem;
+    }
+
+    .content-card {
+      background: white;
+      border-radius: 0.5rem;
+      padding: 2.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e2e8f0;
+      margin-bottom: 2rem;
+    }
+
+    .content-card h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      color: #1a202c;
+    }
+
+    .content-card h3 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #2d3748;
+    }
+
+    .content-card p {
+      line-height: 1.7;
+      color: #4a5568;
+      margin-bottom: 1rem;
+    }
+
+    .content-card ul {
+      margin: 1rem 0 1rem 1.5rem;
+      line-height: 1.8;
+    }
+
+    .content-card li {
+      color: #4a5568;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .feature-item {
+      padding: 1.25rem;
+      background: #f7fafc;
+      border-radius: 0.375rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    .feature-item h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-item p {
+      font-size: 0.9rem;
+      color: #718096;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    .use-case-list {
+      background: #f7fafc;
+      padding: 1.5rem;
+      border-radius: 0.375rem;
+      border-left: 4px solid #3182ce;
+      margin: 1rem 0;
+    }
+
+    .use-case-list h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 0.75rem;
+    }
+
+    strong {
+      color: #2d3748;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: #718096;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      opacity: 0.7;
+    }
+
+    .footer a {
+      color: #3182ce;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .footer a:hover {
+      color: #2c5282;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-logo">
+        <img src="/logo.webp" alt="WebReady Logo" class="logo-img">
+        <h1>WebReady - Convert Images to WebP & AVIF Online</h1>
+      </div>
+      <p class="subtitle">Replace multiple image optimization tools with one. Convert, resize, and generate responsive images in a single click. No more manual work.</p>
+    </header>
+
+    <div class="card">
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-text">Drop images here or click to browse</div>
+        <div class="upload-hint">Supports JPG, PNG, WEBP • Multiple files • Max 25MB each</div>
+        <input type="file" id="fileInput" accept="image/*" multiple>
+      </div>
+
+      <div class="image-queue" id="imageQueue">
+        <div class="queue-header">
+          <div class="queue-stats">
+            <span id="queueCount">0</span> images ready to process
+          </div>
+          <button class="clear-queue-btn" id="clearQueueBtn">Clear All</button>
+        </div>
+        <div class="image-list" id="imageList"></div>
+      </div>
+    </div>
+
+    <div class="card settings-section">
+      <div class="settings-header">
+        <h2>Optimization Settings</h2>
+        <div class="preset-buttons">
+          <button class="preset-btn active" data-preset="default">Default</button>
+          <button class="preset-btn" data-preset="mobile">Mobile</button>
+          <button class="preset-btn" data-preset="high-quality">High Quality</button>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+        <div class="setting-group">
+          <label for="widths">Breakpoint Widths (px)</label>
+          <input type="text" id="widths" value="480,768,1200">
+          <div class="hint">Comma-separated values. Images won't be upscaled beyond their original size.</div>
+        </div>
+
+        <div class="setting-group">
+          <label>Output Formats</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="formatWebp" checked>
+              WebP
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="formatAvif">
+              AVIF
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn btn-primary" id="processAllBtn" disabled>Process All Images</button>
+        <button class="btn btn-secondary" id="addMoreBtn">Add More Images</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="processing-overlay" id="processingOverlay">
+    <div class="processing-modal">
+      <div class="spinner-large"></div>
+      <h3 id="processingText">Processing images...</h3>
+      <p id="processingStatus" style="color: #718096; margin-top: 0.5rem;">0 of 0 completed</p>
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="container content-section">
+    <div class="content-card">
+      <h2>Stop Using Multiple Tools to Optimize Your Images</h2>
+      <p>
+        <strong>The Problem:</strong> Image optimization is tedious. You need one tool to convert to WebP, another for AVIF, a third to resize for different devices, and then you have to manually write the HTML code. It's time-consuming and error-prone.
+      </p>
+      <p>
+        <strong>The Solution:</strong> WebReady replaces your entire image optimization workflow. One upload, one click, and you get WebP/AVIF converted images at multiple sizes, plus production-ready HTML code - all in a single ZIP file. No more jumping between tools or manual resizing.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <h4>Convert to WebP Online</h4>
+          <p>Instantly convert JPG, PNG, and other formats to WebP, reducing file sizes by up to 30% while maintaining quality.</p>
+        </div>
+        <div class="feature-item">
+          <h4>AVIF Converter</h4>
+          <p>Generate next-gen AVIF images with superior compression and quality for modern browsers.</p>
+        </div>
+        <div class="feature-item">
+          <h4>Responsive Image Generator</h4>
+          <p>Automatically create multiple image sizes for different breakpoints and devices.</p>
+        </div>
+        <div class="feature-item">
+          <h4>Batch Image Processing</h4>
+          <p>Process multiple images at once and download everything in a single ZIP file.</p>
+        </div>
+        <div class="feature-item">
+          <h4>HTML Code Generation</h4>
+          <p>Get ready-to-use srcset and picture tag code snippets for immediate implementation.</p>
+        </div>
+        <div class="feature-item">
+          <h4>No Upload Limits</h4>
+          <p>Process images up to 25MB each with no account required or usage restrictions.</p>
+        </div>
+      </div>
+
+      <h3>The Manual Image Optimization Problem</h3>
+      <p>
+        Without WebReady, optimizing images for modern websites requires multiple separate tools and manual steps:
+      </p>
+
+      <div class="use-case-list">
+        <h4>The Old Way (Multiple Tools Required):</h4>
+        <ul>
+          <li><strong>Tool #1:</strong> Upload to a WebP converter, download results</li>
+          <li><strong>Tool #2:</strong> Upload to an AVIF converter, download results</li>
+          <li><strong>Tool #3:</strong> Use an image resizer to create mobile, tablet, desktop versions (repeat for each image)</li>
+          <li><strong>Tool #4:</strong> Use a srcset generator to write the HTML code</li>
+          <li><strong>Manual work:</strong> Organize files, rename them consistently, copy code snippets</li>
+          <li><strong>Time wasted:</strong> 10-15 minutes per image for a complete responsive image set</li>
+        </ul>
+      </div>
+
+      <div class="use-case-list">
+        <h4>The WebReady Way (One Tool, One Click):</h4>
+        <ul>
+          <li><strong>Upload multiple images</strong> at once</li>
+          <li><strong>Select your formats</strong> (WebP, AVIF, or both)</li>
+          <li><strong>Click "Process All Images"</strong></li>
+          <li><strong>Download one ZIP</strong> with all converted images at all sizes plus HTML snippets</li>
+          <li><strong>Time saved:</strong> Process 10 images in under 1 minute</li>
+        </ul>
+      </div>
+
+      <div class="use-case-list">
+        <h4>Perfect For:</h4>
+        <ul>
+          <li>Web developers optimizing site performance</li>
+          <li>Frontend engineers implementing responsive images</li>
+          <li>Digital agencies managing multiple client websites</li>
+          <li>E-commerce sites with large product catalogs</li>
+          <li>Bloggers and content creators improving page speed</li>
+          <li>SEO specialists working on Core Web Vitals</li>
+        </ul>
+      </div>
+
+      <h3>What WebReady Does:</h3>
+      <ul>
+        <li>Converts images to WebP and AVIF formats with customizable quality settings</li>
+        <li>Generates responsive image sets at multiple breakpoint widths (480px, 768px, 1200px by default)</li>
+        <li>Compresses images while maintaining visual quality</li>
+        <li>Creates production-ready HTML code with srcset and sizes attributes</li>
+        <li>Processes multiple images in batch mode</li>
+        <li>Provides downloadable ZIP file with all optimized images and code snippets</li>
+        <li>Includes preset configurations for common use cases (mobile-first, high-quality, default)</li>
+      </ul>
+
+      <h3>What WebReady Does NOT Do:</h3>
+      <ul>
+        <li>Does not edit or modify image content (no cropping, filtering, or effects)</li>
+        <li>Does not store your images on our servers (all processing is temporary)</li>
+        <li>Does not support video or animated GIF conversion</li>
+        <li>Does not require account creation or payment</li>
+        <li>Does not apply watermarks or branding to your images</li>
+        <li>Does not upscale images beyond their original dimensions</li>
+      </ul>
+
+      <h3>How to Use WebReady</h3>
+      <p>
+        <strong>Step 1:</strong> Drag and drop your images or click to browse. You can upload multiple images at once.<br>
+        <strong>Step 2:</strong> Choose your settings - select output formats (WebP, AVIF), adjust quality levels, and set custom breakpoint widths if needed.<br>
+        <strong>Step 3:</strong> Click "Process All Images" and download your optimized images in a single ZIP file.<br>
+        <strong>Step 4:</strong> Extract the ZIP and use the provided HTML snippets to implement responsive images on your website.
+      </p>
+
+      <h3>SEO Benefits of Image Optimization</h3>
+      <p>
+        Using WebReady to convert images to WebP and generate responsive images directly improves your website's Core Web Vitals, particularly the Largest Contentful Paint (LCP) metric. Faster-loading images lead to:
+      </p>
+      <ul>
+        <li>Better Google search rankings</li>
+        <li>Improved mobile page speed scores</li>
+        <li>Lower bounce rates and higher engagement</li>
+        <li>Reduced bandwidth costs</li>
+        <li>Enhanced user experience across all devices</li>
+      </ul>
+
+      <h3>Technical Specifications</h3>
+      <ul>
+        <li><strong>Supported Input Formats:</strong> JPG, PNG, WebP</li>
+        <li><strong>Output Formats:</strong> WebP, AVIF</li>
+        <li><strong>Maximum File Size:</strong> 25MB per image</li>
+        <li><strong>Quality Range:</strong> 1-100 for both WebP and AVIF</li>
+        <li><strong>Default Quality:</strong> 82 for WebP, 55 for AVIF</li>
+        <li><strong>Custom Breakpoints:</strong> Any comma-separated pixel values</li>
+        <li><strong>Batch Processing:</strong> Up to 50 images simultaneously</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <img src="/logo.webp" alt="WebReady Logo" class="footer-logo">
+      <p>Made by <a href="https://lakeview-webdev.com" target="_blank" rel="noopener noreferrer">Lake View Web Development</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const imageQueue = document.getElementById('imageQueue');
+    const imageList = document.getElementById('imageList');
+    const queueCount = document.getElementById('queueCount');
+    const clearQueueBtn = document.getElementById('clearQueueBtn');
+    const processAllBtn = document.getElementById('processAllBtn');
+    const addMoreBtn = document.getElementById('addMoreBtn');
+    const processingOverlay = document.getElementById('processingOverlay');
+    const processingStatus = document.getElementById('processingStatus');
+
+    let imageFiles = [];
+
+    // Preset configurations
+    const presets = {
+      default: { widths: '480,768,1200', webp: 82, avif: 55 },
+      mobile: { widths: '320,640,960', webp: 80, avif: 50 },
+      'high-quality': { widths: '640,1024,1920', webp: 90, avif: 65 }
+    };
+
+    // Preset button handlers
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const preset = presets[btn.dataset.preset];
+        document.getElementById('widths').value = preset.widths;
+
+        const qualityWebpEl = document.getElementById('qualityWebp');
+        const qualityAvifEl = document.getElementById('qualityAvif');
+        if (qualityWebpEl) qualityWebpEl.value = preset.webp;
+        if (qualityAvifEl) qualityAvifEl.value = preset.avif;
+
+        // Trigger width update to recalculate sizes
+        document.getElementById('widths').dispatchEvent(new Event('input'));
+      });
+    });
+
+    // Upload area interactions
+    uploadArea.addEventListener('click', () => fileInput.click());
+
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.classList.add('dragover');
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.classList.remove('dragover');
+    });
+
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove('dragover');
+      handleFiles(Array.from(e.dataTransfer.files));
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      handleFiles(Array.from(e.target.files));
+    });
+
+    addMoreBtn.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    // Update size calculations when widths change
+    document.getElementById('widths').addEventListener('input', () => {
+      // Recalculate and update display for all queued images
+      imageFiles.forEach(imageData => {
+        const item = document.querySelector(`[data-id="${imageData.id}"]`);
+        if (item) {
+          const imgEl = item.querySelector('.image-thumb');
+          if (imgEl && imgEl.naturalWidth) {
+            const widthsInput = document.getElementById('widths').value;
+            const requestedWidths = widthsInput.split(',').map(w => parseInt(w.trim())).filter(w => !isNaN(w));
+            const validWidths = requestedWidths.filter(w => w <= imgEl.naturalWidth);
+
+            let sizesEl = item.querySelector('.image-sizes');
+            if (!sizesEl) {
+              sizesEl = document.createElement('div');
+              sizesEl.className = 'image-sizes';
+              item.querySelector('.image-info').appendChild(sizesEl);
+            }
+
+            if (validWidths.length === 0) {
+              sizesEl.className = 'image-sizes warning-text';
+              sizesEl.textContent = '⚠ Image too small for selected breakpoints';
+            } else if (validWidths.length < requestedWidths.length) {
+              sizesEl.className = 'image-sizes';
+              sizesEl.textContent = `Will generate: ${validWidths.join('px, ')}px (${requestedWidths.length - validWidths.length} size${requestedWidths.length - validWidths.length > 1 ? 's' : ''} skipped)`;
+            } else {
+              sizesEl.className = 'image-sizes';
+              sizesEl.textContent = `Will generate: ${validWidths.join('px, ')}px`;
+            }
+          }
+        }
+      });
+    });
+
+    function handleFiles(files) {
+      const imageFilesOnly = files.filter(file => file.type.startsWith('image/'));
+
+      imageFilesOnly.forEach(file => {
+        const id = Date.now() + Math.random();
+        imageFiles.push({
+          id,
+          file,
+          status: 'pending'
+        });
+        addImageToList(id, file);
+      });
+
+      updateQueue();
+    }
+
+    function addImageToList(id, file) {
+      const item = document.createElement('div');
+      item.className = 'image-item';
+      item.dataset.id = id;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const sizeKB = (file.size / 1024).toFixed(1);
+
+          // Calculate which sizes will be generated
+          const widthsInput = document.getElementById('widths').value;
+          const requestedWidths = widthsInput.split(',').map(w => parseInt(w.trim())).filter(w => !isNaN(w));
+          const validWidths = requestedWidths.filter(w => w <= img.width);
+
+          let sizesText = '';
+          if (validWidths.length === 0) {
+            sizesText = '<div class="image-sizes warning-text">⚠ Image too small for selected breakpoints</div>';
+          } else if (validWidths.length < requestedWidths.length) {
+            sizesText = `<div class="image-sizes">Will generate: ${validWidths.join('px, ')}px (${requestedWidths.length - validWidths.length} size${requestedWidths.length - validWidths.length > 1 ? 's' : ''} skipped)</div>`;
+          } else {
+            sizesText = `<div class="image-sizes">Will generate: ${validWidths.join('px, ')}px</div>`;
+          }
+
+          item.innerHTML = `
+            <img src="${e.target.result}" class="image-thumb" alt="${file.name}">
+            <div class="image-info">
+              <div class="image-name">${file.name}</div>
+              <div class="image-details">${img.width} × ${img.height}px • ${sizeKB} KB</div>
+              ${sizesText}
+            </div>
+            <div class="image-status status-pending">Pending</div>
+            <button class="remove-btn" onclick="removeImage('${id}')">×</button>
+          `;
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+
+      imageList.appendChild(item);
+    }
+
+    function updateQueue() {
+      const count = imageFiles.length;
+      queueCount.textContent = count;
+      imageQueue.classList.toggle('active', count > 0);
+      processAllBtn.disabled = count === 0;
+    }
+
+    window.removeImage = function(id) {
+      imageFiles = imageFiles.filter(img => img.id != id);
+      const item = document.querySelector(`[data-id="${id}"]`);
+      if (item) item.remove();
+      updateQueue();
+    };
+
+    clearQueueBtn.addEventListener('click', () => {
+      if (confirm('Clear all images from queue?')) {
+        imageFiles = [];
+        imageList.innerHTML = '';
+        updateQueue();
+      }
+    });
+
+    // Process all images
+    processAllBtn.addEventListener('click', async () => {
+      const formats = [];
+      if (document.getElementById('formatWebp').checked) formats.push('webp');
+      if (document.getElementById('formatAvif').checked) formats.push('avif');
+
+      if (formats.length === 0) {
+        alert('Please select at least one output format');
+        return;
+      }
+
+      const qualityWebpEl = document.getElementById('qualityWebp');
+      const qualityAvifEl = document.getElementById('qualityAvif');
+
+      const settings = {
+        widths: document.getElementById('widths').value,
+        formats: formats.join(','),
+        quality_webp: qualityWebpEl ? qualityWebpEl.value : 82,
+        quality_avif: qualityAvifEl ? qualityAvifEl.value : 55
+      };
+
+      processAllBtn.disabled = true;
+      processingOverlay.classList.add('active');
+
+      // Mark all as processing
+      imageFiles.forEach(imageData => {
+        const item = document.querySelector(`[data-id="${imageData.id}"]`);
+        item.classList.add('processing');
+        const statusEl = item.querySelector('.image-status');
+        statusEl.className = 'image-status status-processing';
+        statusEl.innerHTML = '<div class="spinner-small"></div> Processing';
+      });
+
+      try {
+        // Create FormData with all images
+        const formData = new FormData();
+        imageFiles.forEach(imageData => {
+          formData.append('images', imageData.file, imageData.file.name);
+        });
+        formData.append('widths', settings.widths);
+        formData.append('formats', settings.formats);
+        formData.append('quality_webp', settings.quality_webp);
+        formData.append('quality_avif', settings.quality_avif);
+
+        processingStatus.textContent = `Processing ${imageFiles.length} images...`;
+
+        const response = await fetch('/process-batch', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          let errorMessage = 'Processing failed';
+          try {
+            const error = await response.json();
+            errorMessage = error.error || errorMessage;
+          } catch (e) {
+            errorMessage = `Server error: ${response.status} ${response.statusText}`;
+          }
+          throw new Error(errorMessage);
+        }
+
+        // Download the single zip file
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'webready-batch.zip';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+
+        // Mark all as completed
+        imageFiles.forEach(imageData => {
+          const item = document.querySelector(`[data-id="${imageData.id}"]`);
+          item.classList.remove('processing');
+          item.classList.add('completed');
+          const statusEl = item.querySelector('.image-status');
+          statusEl.className = 'image-status status-completed';
+          statusEl.textContent = 'Completed';
+          imageData.status = 'completed';
+        });
+
+        processingStatus.textContent = `${imageFiles.length} images completed`;
+
+        setTimeout(() => {
+          if (confirm('All images processed successfully! Clear the queue?')) {
+            imageFiles = [];
+            imageList.innerHTML = '';
+            updateQueue();
+          }
+        }, 500);
+
+      } catch (error) {
+        console.error('Error processing images:', error);
+
+        // Mark all as error
+        imageFiles.forEach(imageData => {
+          const item = document.querySelector(`[data-id="${imageData.id}"]`);
+          item.classList.remove('processing');
+          item.classList.add('error');
+          const statusEl = item.querySelector('.image-status');
+          statusEl.className = 'image-status status-error';
+          statusEl.textContent = 'Failed';
+          imageData.status = 'error';
+        });
+
+        alert(`Error: ${error.message}`);
+      }
+
+      processingOverlay.classList.remove('active');
+      processAllBtn.disabled = false;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+[[redirects]]
+  from = "/process"
+  to = "YOUR_RENDER_API_URL/process"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/process-batch"
+  to = "YOUR_RENDER_API_URL/process-batch"
+  status = 200
+  force = true
+
+[build]
+  publish = "public"
+  command = "echo 'No build needed'"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
