@@ -24,7 +24,8 @@ app.use((req, res, next) => {
   const allowedOrigins = [
     'http://localhost:3000',
     'http://localhost:5500',
-    'https://webreadydev.netlify.app'
+    'https://webreadydev.netlify.app',
+    'https://webready.dev/'
   ];
 
   const origin = req.headers.origin;
