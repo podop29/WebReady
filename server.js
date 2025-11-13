@@ -25,7 +25,7 @@ app.use((req, res, next) => {
     'http://localhost:3000',
     'http://localhost:5500',
     'https://webreadydev.netlify.app',
-    'https://webready.dev/',
+    'https://webready.dev',
     'https://webready.onrender.com'
   ];
 
