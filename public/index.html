@@ -1132,6 +1132,20 @@
       processingOverlay.classList.remove('active');
       processAllBtn.disabled = false;
     });
+
+    // Wake up the backend service on page load (for free tier services that spin down)
+    (async function wakeUpBackend() {
+      try {
+        await fetch('https://webready.onrender.com/health', {
+          method: 'GET',
+          mode: 'cors'
+        });
+        console.log('Backend service pinged successfully');
+      } catch (error) {
+        // Silently fail - this is just a wake-up call
+        console.log('Backend wake-up ping failed (service may be starting):', error.message);
+      }
+    })();
   </script>
 </body>
 </html>
